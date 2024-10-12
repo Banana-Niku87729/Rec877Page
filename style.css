@@ -1,0 +1,9 @@
+P { text-align: center }
+H1 { text-align: center }
+H2 { text-align: center } 
+small { text-align: center }
+.small { text-align: center; }
+body {
+background: #ff0076;
+color: #ffffff;
+}
