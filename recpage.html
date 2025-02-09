@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="style.css">
+<title>Rec877 Main PAGE</title>
+<link rel="icon" href="asset/favicon2.png">
+<style>
+    body {
+        color: #ffffff;
+        text-align: center;
+    }
+    #toggleText {
+        text-align: center;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.3);
+        display: inline-block;
+    }
+</style>
+</head>
+<body>
+    <div id="toggleText" onclick="toggleTheme()"></div>
+    <p><img src="asset/logo.png" width="240" alt="おそらく、このロゴは5分程で作られたものでしょう。"></p>
+    <h1>すごく適当で完璧を保ちたい人</h1>
+    <p>せっかくやるなら真面目にやろうぜ！！！適当でもいいから！！</p>
+    <h2>こいつはなにしてるん？</h2>
+    <p>Scratchでゲーム開発、マイクラで遊んだりとネットで自由気ままに活動してます。<b><s>失踪しがち</s></b></p>
+    <p class="small"><small>ちなみに、このサイトはHTMLで書いてるよ、Googleサイトに慣れたせいで難しく感じる。</small></p>
+    <h2>つくったもの</h2>
+    <p>かき氷を作ろう！<br>自動販売機を作ろう！</p>
+    <p>↑これぐらいしか作ったことないの終わってる</p>
+    
+    <script>
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function toggleTheme() {
+            let body = document.body;
+            let toggleText = document.getElementById("toggleText");
+            if (body.style.background === "rgb(255, 0, 118)") {
+                body.style.background = "#808080";
+                toggleText.innerText = "これでいいかな？目に優しい色だね！";
+                setCookie("theme", "gray", 30);
+            } else {
+                body.style.background = "#ff0076";
+                toggleText.innerText = "え？目に悪い？許してよこれがイメージカラーなんだからさ";
+                setCookie("theme", "pink", 30);
+            }
+        }
+
+        window.onload = function() {
+            let theme = getCookie("theme");
+            let body = document.body;
+            let toggleText = document.getElementById("toggleText");
+            if (theme === "gray") {
+                body.style.background = "#808080";
+                toggleText.innerText = "これでいいかな？目に優しい色だね！";
+            } else {
+                body.style.background = "#ff0076";
+                toggleText.innerText = "え？目に悪い？許してよこれがイメージカラーなんだからさ";
+            }
+        };
+    </script>
+</body>
+</html>
