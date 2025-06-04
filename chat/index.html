@@ -374,11 +374,12 @@
             <h1>💬 チャットアプリ</h1>
             <div class="login-form">
                 <input type="text" id="userIdInput" placeholder="ユーザーID（英数字のみ）" maxlength="20">
-                <input type="text" id="userNameInput" placeholder="表示名" maxlength="20">
-                <button class="login-btn" onclick="login()">ログイン</button>
+                <input type="text" id="userNameInput" placeholder="表示名（新規登録時のみ）" maxlength="20">
+                <button class="login-btn" onclick="login()">ログイン / 新規登録</button>
             </div>
             <p style="margin-top: 20px; color: #666; font-size: 14px;">
-                新規の場合は自動でアカウントが作成されます
+                既存IDの場合は表示名は無視されます<br>
+                新規IDの場合は自動で登録されます
             </p>
         </div>
     </div>
@@ -461,22 +462,26 @@
                 return;
             }
             
-            if (!users[userId]) {
+            // 既存ユーザーかチェック
+            if (users[userId]) {
+                // 既存ユーザーの場合、パスワード的な確認なしでログイン
+                // 実際のアプリでは認証が必要ですが、今回はシンプルに
+                currentUser = { id: userId, name: users[userId].name };
+                document.getElementById('currentUserId').textContent = `${users[userId].name} (${userId})`;
+            } else {
+                // 新規ユーザー作成
                 users[userId] = {
                     name: userName,
                     friends: [],
                     createdAt: new Date().toISOString()
                 };
-            } else {
-                users[userId].name = userName;
+                currentUser = { id: userId, name: userName };
+                document.getElementById('currentUserId').textContent = `${userName} (${userId})`;
+                localStorage.setItem('chatApp_users', JSON.stringify(users));
             }
-            
-            currentUser = { id: userId, name: userName };
-            localStorage.setItem('chatApp_users', JSON.stringify(users));
             
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('mainScreen').style.display = 'flex';
-            document.getElementById('currentUserId').textContent = `${userName} (${userId})`;
             
             loadFriends();
             checkForNewMessages();
@@ -502,6 +507,11 @@
                 return;
             }
             
+            if (!/^[a-zA-Z0-9]+$/.test(friendId)) {
+                alert('IDは英数字のみで入力してください');
+                return;
+            }
+            
             if (friendId === currentUser.id) {
                 alert('自分自身は追加できません');
                 return;
@@ -512,13 +522,22 @@
                 return;
             }
             
+            if (!users[currentUser.id].friends) {
+                users[currentUser.id].friends = [];
+            }
+            
             if (users[currentUser.id].friends.includes(friendId)) {
                 alert('既に友達です');
                 return;
             }
             
+            // 相互に友達追加
             users[currentUser.id].friends.push(friendId);
+            if (!users[friendId].friends) {
+                users[friendId].friends = [];
+            }
             users[friendId].friends.push(currentUser.id);
+            
             localStorage.setItem('chatApp_users', JSON.stringify(users));
             
             document.getElementById('friendIdInput').value = '';
