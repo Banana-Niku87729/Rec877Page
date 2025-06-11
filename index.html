@@ -84,6 +84,20 @@
             padding: 4rem 2rem;
         }
 
+        .profile-section {
+            background: var(--card-light);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
         .xbox-section {
             background: var(--card-light);
             border-radius: 20px;
@@ -99,6 +113,7 @@
         }
 
         @media (prefers-color-scheme: dark) {
+            .profile-section,
             .xbox-section {
                 background: var(--card-dark);
             }
@@ -109,6 +124,16 @@
             margin-bottom: 1.5rem;
             color: var(--accent-color);
             text-align: center;
+        }
+
+        .profile-content {
+            text-align: center;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .profile-content p {
+            margin-bottom: 0.8rem;
         }
 
         .search-container {
@@ -229,6 +254,46 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
+        .products-section {
+            background: var(--card-light);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .products-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .products-section {
+                background: var(--card-dark);
+            }
+        }
+
+        .products-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .products-btn:hover {
+            background: #e6006a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 118, 0.4);
+        }
+
         .footer {
             background: #000;
             color: white;
@@ -345,7 +410,10 @@
                 padding: 2rem 1rem;
             }
 
-            .xbox-section, .dogy-section {
+            .profile-section,
+            .xbox-section,
+            .dogy-section,
+            .products-section {
                 padding: 2rem 1.5rem;
             }
 
@@ -378,8 +446,19 @@
     </div>
 
     <div class="content-section">
+        <div class="profile-section">
+            <h2 class="section-title">Profile</h2>
+            <div class="profile-content">
+                <p>Beginner Programmer / Man</p>
+                <p>Active on Discord + Discord Server Operator</p>
+                <p>First Debut: Scratch</p>
+                <p>I use Python, HTML, JS, and Dogy</p>
+                <p>I like Minecraft</p>
+            </div>
+        </div>
+
         <div class="xbox-section">
-            <h2 class="section-title">Follow us XBOX</h2>
+            <h2 class="section-title">Follow us on Xbox</h2>
             <div class="search-container">
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
@@ -392,6 +471,11 @@
         <div class="dogy-section">
             <h2 class="dogy-title">Dogy is here!</h2>
             <button class="dogy-btn" onclick="visitDogy()">Visit Dogy</button>
+        </div>
+
+        <div class="products-section">
+            <h2 class="section-title">Products</h2>
+            <button class="products-btn" onclick="visitProducts()">Visit</button>
         </div>
     </div>
 
@@ -484,6 +568,11 @@
 
         function visitDogy() {
             window.open('http://dogy.rec877.com', '_blank');
+        }
+
+        function visitProducts() {
+            // ProductsページのURLを設定
+            alert('Productsページのリンクを設定してください');
         }
 
         // Prevent typing when user focuses on input
