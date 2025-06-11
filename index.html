@@ -585,6 +585,16 @@
                 isTyping = false;
             }, 500);
         });
+        
+      document.addEventListener('keydown', function(event) {
+        // Ctrlキー（Macの場合はCommandキー）と 's' キーが同時に押されたかチェック
+        if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+          // ブラウザのデフォルトの保存動作をキャンセル
+          event.preventDefault();
+          // ユーザーにメッセージを表示（任意）
+          alert('このページの保存は許可されていません。');
+        }
+      });
     </script>
 </body>
 </html>
