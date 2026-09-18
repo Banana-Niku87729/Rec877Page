@@ -1,9 +1,49 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rec877 Official Site</title>
+    <title>Rec877 Official Website</title>
+    <meta name="description" content="Official website of Rec877. Developer, Discord server operator, and content creator. Explore projects, social links, and official products.">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Rec877 Official Website">
+    <meta property="og:description" content="Official website of Rec877. Developer, Discord server operator, and content creator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.rec877.com/">
+    <meta property="og:image" content="https://www.rec877.com/asset/favicon2.png">
+
+    <!-- Structured Data (JSON-LD) for Google Brand Entity -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.rec877.com/#website",
+          "url": "https://www.rec877.com/",
+          "name": "Rec877 Official Website",
+          "alternateName": ["Rec877", "Rec877 Official"],
+          "publisher": {
+            "@id": "https://www.rec877.com/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.rec877.com/#person",
+          "name": "Rec877",
+          "url": "https://www.rec877.com/",
+          "sameAs": [
+            "https://youtube.com/@BNiku87729",
+            "https://twitter.com/BNiku87729",
+            "https://bsky.app/profile/rec877.com",
+            "https://www.tiktok.com/@_rec877_"
+          ]
+        }
+      ]
+    }
+    </script>
+
     <link rel="icon" href="asset/favicon2.png">
     <style>
         * {
@@ -464,7 +504,7 @@
                     <span class="search-icon">🔍</span>
                     <input type="text" class="search-input" id="searchInput" placeholder="">
                 </div>
-                <button class="search-btn" onclick="searchXbox()">検索</button>
+                <button class="search-btn" onclick="searchXbox()">Search</button>
             </div>
         </div>
 
@@ -585,15 +625,11 @@
             }, 500);
         });
         
-      document.addEventListener('keydown', function(event) {
-        // Ctrlキー（Macの場合はCommandキー）と 's' キーが同時に押されたかチェック
-        if ((event.ctrlKey || event.metaKey) && event.key === 's') {
-          // ブラウザのデフォルトの保存動作をキャンセル
-          event.preventDefault();
-          // ユーザーにメッセージを表示（任意）
-          alert('このページの保存は許可されていません。');
-        }
-      });
+        document.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+                event.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
